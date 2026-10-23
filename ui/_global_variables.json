@@ -1,0 +1,9 @@
+{
+  "$filled_direction_anchor": "top_middle",
+  // top_left,top_middle,top_right
+  "$duration_progress": 5,
+  //second
+  "$progress_bar_color": [1.0,
+    0.33,
+    1.0]
+}
