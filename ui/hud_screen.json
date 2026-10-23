@@ -1,0 +1,10 @@
+{
+  "namespace": "chat",
+  "messages_text/text": {
+    "bindings":[{
+      "binding_type": "view",
+      "source_property_name": "(not (('%.5s' * #text) = 'cbar:'))",
+      "target_property_name": "#visible"
+    }]
+  }
+}
