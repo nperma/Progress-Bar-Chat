@@ -43,8 +43,8 @@
           "type": "panel",
           "size": [182,
             5],
-          "anchor_from": "top_middle",
-          "anchor_to": "top_middle",
+          "anchor_from": "$filled_direction_anchor",
+          "anchor_to": "$filled_direction_anchor",
           "offset": [0,
             12],
           "layer": 2,
@@ -54,9 +54,7 @@
             "fill_image": {
               "type": "image",
               "texture": "textures/ui/filled_progress_bar",
-              "color": [1.0,
-                0.33,
-                1.0],
+              "color": "$progress_bar_color",
               "size": [182,
                 5]
             }
@@ -107,7 +105,7 @@
   "cbar_drain": {
     "anim_type": "size",
     "easing": "linear",
-    "duration": 5,
+    "duration": "$duration_progress",
     "from": [182,
       5],
     "to": [0,
