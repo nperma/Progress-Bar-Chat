@@ -1,0 +1,145 @@
+{
+  "namespace": "nperma:cbar",
+
+
+  "cbar_item": {
+    "type": "panel",
+    "propagate_alpha": true,
+    "size": ["100%",
+      "100%c"],
+    "anims": ["@nperma:cbar.cbar_in"],
+    "controls": [{
+      "cbar_frame@nperma:cbar.cbar_frame": {}
+    },
+      {
+        "cbar_immediate_destroy@nperma:cbar.cbar_immediate_destroy": {}
+      }]
+  },
+
+  "cbar_frame": {
+    "type": "panel",
+    "size": [182,
+      22],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [{
+      "track": {
+        "type": "image",
+        "texture": "textures/ui/empty_progress_bar",
+        "size": [182,
+          5],
+        "color": [1.0,
+          0.33,
+          1.0],
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "offset": [0,
+          12],
+        "layer": 1
+      }
+    },
+      {
+        "fill": {
+          "type": "panel",
+          "size": [182,
+            5],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [0,
+            12],
+          "layer": 2,
+          "clips_children": true,
+          "anims": ["@nperma:cbar.cbar_drain"],
+          "controls": [{
+            "fill_image": {
+              "type": "image",
+              "texture": "textures/ui/filled_progress_bar",
+              "color": [1.0,
+                0.33,
+                1.0],
+              "size": [182,
+                5]
+            }
+          }]
+        }
+      },
+      {
+        "title": {
+          "type": "label",
+          "text": "#teks",
+          "color": [1,
+            1,
+            1],
+          "shadow": true,
+          "layer": 3,
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "text_alignment": "center",
+          "bindings": [{
+            "binding_type": "view",
+            "source_control_name": "cbar_frame",
+            "resolve_sibling_scope": true,
+            "source_property_name": "#titel",
+            "target_property_name": "#teks"
+          }]
+        }
+      }],
+    "bindings": [{
+      "binding_type": "view",
+      "source_property_name": "(('%.5s' * #text) = 'cbar:')",
+      "target_property_name": "#visible"
+    },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#text - 'cbar:')",
+        "target_property_name": "#titel"
+      }]
+  },
+
+  "cbar_in": {
+    "anim_type": "alpha",
+    "duration": 0.3,
+    "easing": "out_sine",
+    "from": 0,
+    "to": 1
+  },
+
+  "cbar_drain": {
+    "anim_type": "size",
+    "easing": "linear",
+    "duration": 5,
+    "from": [182,
+      5],
+    "to": [0,
+      5],
+    "destroy_at_end": "chat_grid_item"
+  },
+
+  "cbar_immediate_destroy": {
+    "type": "stack_panel",
+    "size": [0,
+      0],
+    "factory": {
+      "name": "immediate_destroy_factory",
+      "control_name": "@nperma:cbar.immediate_destroy_control"
+    },
+    "bindings": [{
+      "binding_type": "view",
+      "source_control_name": "cbar_frame",
+      "source_property_name": "((not #visible) * 1)",
+      "target_property_name": "#collection_length",
+      "resolve_sibling_scope": true
+    }]
+  },
+  "immediate_destroy_control": {
+    "type": "panel",
+    "size": [0,
+      0],
+    "anims": ["@nperma:cbar.immediate_destroy_anim"]
+  },
+  "immediate_destroy_anim": {
+    "anim_type": "wait",
+    "duration": 0,
+    "destroy_at_end": "chat_grid_item"
+  }
+}
