@@ -1,0 +1,44 @@
+{
+  "namespace": "hud",
+
+  "chat_grid_item/chat_background": {
+    "bindings": [{
+      "binding_name": "#chat_text",
+      "binding_name_override": "#text",
+      "binding_type": "collection",
+      "binding_collection_name": "chat_text_grid",
+      "binding_condition": "once"
+    },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (('%.5s' * #text) = 'cbar:'))",
+        "target_property_name": "#visible"
+      }]
+  },
+
+  "nperma_root@common.empty_panel": {
+    "controls":[{
+      "cbar_layout": {
+        "type": "stack_panel",
+        "orientation": "vertical",
+        "size": [0,
+          "100%c"],
+        "layer": 20,
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "offset": [0,
+          20],
+        "factory": {
+          "name": "chat_item_factory",
+          "max_children_size": 3,
+          "control_ids": {
+            "chat_item": "@nperma:cbar.cbar_item"
+          }
+        }
+      }
+    }]
+  },
+    "hud_screen": {
+    "$additional_screen_content": "hud.nperma_root"
+  }
+}
